@@ -21,8 +21,11 @@ function draw() {
   verificarColisaoBolinhaComRaqueteBiblioteca(xJogador, yJogador);
   verificarColisaoBolinhaComRaqueteBiblioteca(xOponente, yOponente)
 
-  incluirPlacar();
   marcaPontos();
+  mostraPlacar();
+
+  // dificultaNivel();
+  mostraNivel();
 
   bolinhaNaoFicaPresa();
 }

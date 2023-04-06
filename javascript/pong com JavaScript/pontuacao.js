@@ -1,3 +1,7 @@
+// Placar do Jogo
+let meusPontos = 0;
+let pontosOponente = 0;
+
 function marcaPontos() {
     if (xBolinha > 590) {
         meusPontos++;
@@ -9,7 +13,7 @@ function marcaPontos() {
     }
 }
 
-function incluirPlacar() {
+function mostraPlacar() {
     stroke(255);
     textAlign(CENTER);
     textSize(20);

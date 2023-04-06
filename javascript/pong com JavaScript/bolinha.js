@@ -5,8 +5,9 @@ const diametroBolinha = 20;
 const raioBolinha = diametroBolinha / 2;
 
 // Velocidade da Bolinha
-let xVelocidadeBolinha = 5;
-let yVelocidadeBolinha = 5;
+
+let xVelocidadeBolinha = 7;
+let yVelocidadeBolinha = 7;
 
 // Variáveis da Biblioteca
 let colidiu = false;
@@ -51,40 +52,8 @@ function inverteSentidoYDaBolinha() {
 }
 
 function bolinhaNaoFicaPresa() {
-
-    // Armazena a posição anterior da bola
-    let xBolinhaAnterior = xBolinha;
-    let yBolinhaAnterior = yBolinha;
-
-    const correcaoPixel = 1;
+    const correcaoPixel = 2;
 
     xBolinha >= xOponente ? xBolinha = xOponente - larguraRaquete - correcaoPixel : xBolinha;
     xBolinha <= xJogador ? xBolinha = xJogador + larguraRaquete + correcaoPixel : xBolinha;
-
-    // if (xBolinha > 600 + 2) {
-    //     xBolinha = 590;
-    // }
-
-    // if (xBolinha < xOponente + larguraRaquete ||
-    //     yBolinha > yOponente ||
-    //     yBolinha < yOponente + alturaRaquete) {
-    //     xBolinha = xOponente - larguraRaquete;
-    // }
-
-
-    // xBolinha < larguraRaquete ? xBolinha = larguraRaquete : xBolinha;
-
-    // xBolinha > 600 - larguraRaquete ? xBolinha = 600 - larguraRaquete : xBolinha;
-
-
-
-    // // Move a bola para a nova posição
-    // xBolinha += velocidadeX;
-    // yBolinha += velocidadeY;
-
-    // // Verifica se a bola está indo em direção à raquete adversária
-    // if (xBolinhaAnterior > xOponente && xBolinha <= xOponente + larguraRaquete) {
-    //     // Corrige a posição da bola
-    //     xBolinha = xOponente + larguraRaquete;
-    // }
 }
