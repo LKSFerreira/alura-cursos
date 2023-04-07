@@ -1,7 +1,7 @@
 // Variáveis Raquete
 let xJogador = 5;
 let yJogador = 150;
-const velocidadeRaquete = 2;
+let velocidadeRaquete = 10;
 
 // Variáveis Opnenete
 let xOponente = 585;
@@ -14,7 +14,6 @@ const alturaRaquete = 100;
 // Variáveis da Tela
 const margemSuperiorTela = 10;
 const margemInferiorTela = alturaTela - alturaRaquete - margemSuperiorTela;
-
 
 
 function mostraRaquetes() {
@@ -52,12 +51,31 @@ function limitaChaoDaRaquete(coordenadaY) {
     return coordenadaY <= margemInferiorTela;
 }
 
+let indiceErro = 0;
+
+setInterval(() => {
+    movimentaOponente();
+}, 1);
+
 function movimentaOponente() {
-    yOponente = yBolinha - alturaRaquete / 2;
-    
-    yOponente <= margemSuperiorTela ? yOponente = margemSuperiorTela : yOponente;
-    yOponente >= margemInferiorTela ? yOponente = margemInferiorTela : yOponente;
-}
+        yOponente = yBolinha - (alturaRaquete / 2) - chancesDeErrar[indiceErro];
+
+        yOponente <= margemSuperiorTela ? yOponente = margemSuperiorTela : yOponente;
+        yOponente >= margemInferiorTela ? yOponente = margemInferiorTela : yOponente;
+    }
+
+
+const chancesDeErrar = [-75, -55, -35, 0, 35, 55, 75,]
+
+let tempoSetInterval = 4000;
+
+setInterval(() => {
+    indiceErro = Math.floor(Math.random() * 7);
+
+    tempoSetInterval = nivel > 6 ? 1000 : 2000;
+
+    console.log(indiceErro);
+}, tempoSetInterval);
 
 
 

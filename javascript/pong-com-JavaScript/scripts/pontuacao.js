@@ -3,15 +3,19 @@ let meusPontos = 0;
 let pontosOponente = 0;
 
 function marcaPontos() {
-    if (xBolinha > 590) {
+    if (xBolinha >= 590 && naoFicouPresa) {
         meusPontos++;
         pontuacao.play();
+        naoFicouPresa = false;
     }
-    if (xBolinha < 10) {
+    if (xBolinha <= 10 && naoFicouPresa) {
         pontosOponente++;
         pontuacao.play();
+        naoFicouPresa = false;
     }
 }
+
+setInterval(() => naoFicouPresa = true, 1500);
 
 function mostraPlacar() {
     stroke(255);

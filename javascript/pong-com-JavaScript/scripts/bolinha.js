@@ -3,11 +3,12 @@ let xBolinha = 300;
 let yBolinha = 200;
 const diametroBolinha = 20;
 const raioBolinha = diametroBolinha / 2;
+let naoFicouPresa = false;
 
 // Velocidade da Bolinha
 
-let xVelocidadeBolinha = 7;
-let yVelocidadeBolinha = 7;
+let xVelocidadeBolinha = 4;
+let yVelocidadeBolinha = 4;
 
 // Variáveis da Biblioteca
 let colidiu = false;
@@ -39,6 +40,7 @@ function verificarColisaoBolinhaComRaqueteBiblioteca(coordenadaX, coordenadaY) {
 }
 
 function movimentaBolinha() {
+
     xBolinha += xVelocidadeBolinha;
     yBolinha += yVelocidadeBolinha;
 }
@@ -54,6 +56,9 @@ function inverteSentidoYDaBolinha() {
 function bolinhaNaoFicaPresa() {
     const correcaoPixel = 2;
 
-    xBolinha >= xOponente ? xBolinha = xOponente - larguraRaquete - correcaoPixel : xBolinha;
-    xBolinha <= xJogador ? xBolinha = xJogador + larguraRaquete + correcaoPixel : xBolinha;
+    let xBolinhaTemporaria = xBolinha - larguraRaquete - correcaoPixel;
+    let yBolinhaTemporaria = yBolinha + larguraRaquete + correcaoPixel;
+
+    xBolinha >= xOponente ? xBolinhaTemporaria : xBolinha;
+    xBolinha <= xJogador ? yBolinha : xBolinha;
 }
