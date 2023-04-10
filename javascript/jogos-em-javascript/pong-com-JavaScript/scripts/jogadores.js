@@ -15,6 +15,10 @@ const alturaRaquete = 100;
 const margemSuperiorTela = 10;
 const margemInferiorTela = alturaTela - alturaRaquete - margemSuperiorTela;
 
+let chancesDeErrar = [-75, -55, -35, 0, 35, 55, 75,];
+let indiceErro = 0;
+let tempoSetInterval = 4000;
+
 
 function mostraRaquetes() {
     rect(xJogador, yJogador, larguraRaquete, alturaRaquete);
@@ -27,9 +31,7 @@ function movimentaJogador() {
     }
 
     if (keyIsDown(83)) {
-
         yJogador >= margemInferiorTela ? yJogador = margemInferiorTela : yJogador += velocidadeRaquete;
-        console.log(yJogador)
     }
 }
 
@@ -51,31 +53,28 @@ function limitaChaoDaRaquete(coordenadaY) {
     return coordenadaY <= margemInferiorTela;
 }
 
-let indiceErro = 0;
-
-setInterval(() => {
-    movimentaOponente();
-}, 1);
 
 function movimentaOponente() {
-        yOponente = yBolinha - (alturaRaquete / 2) - chancesDeErrar[indiceErro];
+    yOponente = yBolinha - (alturaRaquete / 2) - chancesDeErrar[indiceErro];
 
-        yOponente <= margemSuperiorTela ? yOponente = margemSuperiorTela : yOponente;
-        yOponente >= margemInferiorTela ? yOponente = margemInferiorTela : yOponente;
-    }
+    yOponente <= margemSuperiorTela ? yOponente = margemSuperiorTela : yOponente;
+    yOponente >= margemInferiorTela ? yOponente = margemInferiorTela : yOponente;
+}
 
-
-const chancesDeErrar = [-75, -55, -35, 0, 35, 55, 75,]
-
-let tempoSetInterval = 4000;
+let crescente = true;
 
 setInterval(() => {
-    indiceErro = Math.floor(Math.random() * 7);
 
-    tempoSetInterval = nivel > 6 ? 1000 : 2000;
 
-    console.log(indiceErro);
+    if (crescente) {
+        indiceErro++;
+        if (indiceErro >= chancesDeErrar.length) {
+            crescente = false;
+        }
+    } else {
+        indiceErro--;
+        if (indiceErro <= 0) {
+            crescente = true;
+        }
+    }
 }, tempoSetInterval);
-
-
-

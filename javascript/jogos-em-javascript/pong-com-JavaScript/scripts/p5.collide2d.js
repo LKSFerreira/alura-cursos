@@ -479,7 +479,6 @@ p5.prototype.collidePointPoint = function (x,y,x2,y2, buffer) {
     if(this.dist(x,y,x2,y2) <= buffer){
       return true;
     }
-
   return false;
 };
 

@@ -40,7 +40,6 @@ function verificarColisaoBolinhaComRaqueteBiblioteca(coordenadaX, coordenadaY) {
 }
 
 function movimentaBolinha() {
-
     xBolinha += xVelocidadeBolinha;
     yBolinha += yVelocidadeBolinha;
 }
@@ -54,11 +53,11 @@ function inverteSentidoYDaBolinha() {
 }
 
 function bolinhaNaoFicaPresa() {
-    const correcaoPixel = 2;
+    if (xBolinha >= xOponente && (yBolinha >= yOponente && yBolinha <= yOponente + alturaRaquete)) {
+        xBolinha -= 10;
+    }
 
-    let xBolinhaTemporaria = xBolinha - larguraRaquete - correcaoPixel;
-    let yBolinhaTemporaria = yBolinha + larguraRaquete + correcaoPixel;
-
-    xBolinha >= xOponente ? xBolinhaTemporaria : xBolinha;
-    xBolinha <= xJogador ? yBolinha : xBolinha;
+    if (xBolinha <= xJogador && (yBolinha >= yJogador && yBolinha <= yJogador + alturaRaquete)) {
+        xBolinha += 10;
+    }
 }

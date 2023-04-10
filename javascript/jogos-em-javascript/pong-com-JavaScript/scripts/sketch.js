@@ -15,7 +15,7 @@ function draw() {
 
   movimentaBolinha();
   movimentaJogador();
-  // movimentaOponente();
+  movimentaOponente();
 
   verificaColisaoBolinhaComBordas();
   verificarColisaoBolinhaComRaqueteBiblioteca(xJogador, yJogador);
@@ -28,3 +28,4 @@ function draw() {
 
   bolinhaNaoFicaPresa();
 }
+
