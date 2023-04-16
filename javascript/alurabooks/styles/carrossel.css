@@ -1,0 +1,133 @@
+.carrossel__titulo {
+    background-color: var(--branco);
+    color: var(--laranja-primario);
+    font-size: 1.125em;
+    font-weight: 700;
+    padding: 1em 0 .25em 0;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.swiper-slide img {
+    width: 100%;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    display: none;
+}
+
+.swiper-pagination {
+    position: initial;
+    margin: .5em 0;
+}
+
+.card {
+    background: var(--branco);
+    border-radius: .625em;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 1em;
+    padding: 1em;
+}
+
+.descricao__titulo {
+    margin-top: .5em;
+    color: var(--laranja-primario);
+    font-weight: 700;
+}
+
+.descricao__titulo-livro {
+    color: var(--azul-subtitulo);
+    font-size: 1.125em;
+    font-weight: 700;
+    margin: .5em 0;
+}
+
+.descricao__texto {
+    font-size: .875em;
+}
+
+.card__descricao {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: .5em;
+}
+
+.card__botoes {
+    display: flex;
+    justify-content: space-between;
+}
+
+.botoes {
+    display: flex;
+}
+
+.botoes__item {
+    margin: 0 .5em;
+}
+
+.botoes__ancora {
+    background-color: var(--laranja-primario);
+    color: var(--branco);
+    font-weight: 700;
+    padding: 1em 2.2em;
+    text-decoration: none;
+}
+
+@media screen and (min-width: 1024px) {
+    .carrossel__titulo {
+        font-size: 1.625em;
+    }
+
+    .swiper-pagination {
+        margin: 2em 0 3em 0;
+    }
+
+    .swiper {
+        width: 60%;
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        display: block;
+        top: 60%;
+    }
+
+    .card {
+        width: 45%;
+        margin: 2em auto;
+    }
+}
+
+@media screen and (min-width: 1728px) {
+    .carrossel__container {
+        display: flex;
+        margin: 0 15vw 3em 15vw;
+    }
+
+    .swiper-pagination {
+        margin: .95em 0;
+    }
+
+    .swiper {
+        width: 60%;
+    }
+
+    .descricao__titulo {
+        font-size: 2em;
+    }
+
+    .descricao__texto {
+        font-size: 1.1em;
+    }
+
+    .descricao {
+        margin-right: 1em;
+    }
+
+    .card {
+        width: 70%;
+        margin-left: 3em;
+    }
+
+}
