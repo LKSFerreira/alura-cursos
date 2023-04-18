@@ -5,8 +5,8 @@ import java.util.List;
 
 public class TestaPerformaceAdicaoEBusca {
     public static void main(String[] args) {
-        // Collection<Integer> numerosArrayList = new HashSet<>();
-        Collection<Integer> numerosArrayList = new ArrayList<>();
+        Collection<Integer> numerosArrayList = new HashSet<>();
+        //Collection<Integer> numerosArrayList = new ArrayList<>();
         long tempoInicial = System.currentTimeMillis();
 
         for (int i = 0; i < 180000; i++) {

@@ -9,30 +9,45 @@ function mostraAtor() {
 }
 
 function movimentaAtor() {
-  if (keyIsDown(87)) {
-    yAtor -= 3;
-  }
-  if (keyIsDown(83)) {
-    if (podeSeMover()) {
-      yAtor += 3;
+
+  if (spawn) {
+    if (keyIsDown(87)) {
+      yAtor -= 3;
+    }
+    if (keyIsDown(83)) {
+      if (podeSeMover()) {
+        yAtor += 3;
+      }
     }
   }
+
 }
+
+let spawn = true;
 
 function verificaColisao() {
   //collideRectCircle(x1, y1, width1, height1, cx, cy, diameter)
   for (let i = 0; i < imagemCarros.length; i++) {
 
     if (!colisao) {
-      colisao = collideRectCircle(xCarros[i], yCarros[i], comprimentoCarro, alturaCarro, xAtor, yAtor, 15)
+      if (spawn) {
+        colisao = collideRectCircle(xCarros[i], yCarros[i], comprimentoCarro, alturaCarro, xAtor, yAtor, 15)
+        console.log(spawn)
+      }
     }
+
     if (colisao) {
       colisao = false;
+      spawn = false;
       somDaColisao.play();
+
       if (maiorDeIdade) {
         carregaAtor("../images/blod.png");
-        voltaAtorParaPosicaoInicial();
+        voltaAtorParaPosicaoInicial("morte");
+      } else {
+        voltaAtorParaPosicaoInicial("ponto");
       }
+
       if (pontosMaiorQueZero()) {
         meusPontos -= 1;
       }
@@ -40,11 +55,18 @@ function verificaColisao() {
   }
 }
 
-function voltaAtorParaPosicaoInicial() {
-  setInterval(() => {
-    carregaAtor("../images/ator-1.png");
+function voltaAtorParaPosicaoInicial(morteOuPonto) {
+
+  if (morteOuPonto === "morte") {
+    setTimeout(() => {
+      carregaAtor("../images/ator-1.png");
+      yAtor = 366;
+      spawn = true;
+    }, 1500);
+  } else {
     yAtor = 366;
-  }, 2000);
+    spawn = true;
+  }
 }
 
 function incluiPontos() {
@@ -56,9 +78,9 @@ function incluiPontos() {
 
 function marcaPonto() {
   if (yAtor < 15) {
+    voltaAtorParaPosicaoInicial("ponto");
     meusPontos += 1;
     somDoPonto.play();
-    voltaAtorParaPosicaoInicial();
   }
 }
 
