@@ -42,7 +42,7 @@ function verificaColisao() {
       somDaColisao.play();
 
       if (maiorDeIdade) {
-        carregaAtor("../images/blod.png");
+        carregaAtor("images/blod.png");
         voltaAtorParaPosicaoInicial("morte");
       } else {
         voltaAtorParaPosicaoInicial("ponto");
@@ -59,7 +59,7 @@ function voltaAtorParaPosicaoInicial(morteOuPonto) {
 
   if (morteOuPonto === "morte") {
     setTimeout(() => {
-      carregaAtor("../images/ator-1.png");
+      carregaAtor("images/ator-1.png");
       yAtor = 366;
       spawn = true;
     }, 1500);

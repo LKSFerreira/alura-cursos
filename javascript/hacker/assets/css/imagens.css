@@ -1,0 +1,36 @@
+.container-titulo {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--roxo);
+    font-size: 3rem !important;
+}
+
+.container__imagens {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.imagens {
+    padding-top: 5px;
+    padding-left: 7px;
+    padding-right: 7px;
+    transition: transform 0.4s;
+}
+
+.imagens:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+@media screen and (min-width: 720px) {
+    .container__imagens {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+}
