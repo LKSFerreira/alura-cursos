@@ -9,22 +9,33 @@
         referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous"
         referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Número Secreto</title>
 </head>
 
 <body>
     <h1>Acerte o número secreto</h1>
 
-    <h3>O número secreto está entre <span class="menor-valor">0</span> e <span class="maior-valor">100</span></h3>
+    <h3>O número secreto está entre <span id="menor-valor">0</span> e <span id="maior-valor">100</span></h3>
 
-    <div id="chute" class="mensagem">
+    <div class="mensagem">
         <div>Você disse:</div>
-        <span class="box">20</span>
+        <div id="chute">
+            <!-- <span class="box">20</span> -->
+        </div>
         <span>O número secreto é maior!
-            <i class="fa-solid fa-arrow-up-9-1 fa-bounce"></i>
+            <i class="icone fa-solid fa-arrow-up-9-1 fa-bounce"></i>
+        </span>
+        <span>
+            <i class="icone fa-solid fa-arrow-down-1-9 fa-bounce"></i>
         </span>
     </div>
+
+    <script src="js/NumeroSecreto.js"></script>
+    <script src="js/ReconhecimentoVoz.js"></script>
+    <script src="js/Validacoes.js"></script>
+
+
 </body>
 
 </html>

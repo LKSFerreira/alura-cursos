@@ -1,0 +1,54 @@
+@import url(box.css);
+
+:root {
+    --font-family: 'Roboto', sans-serif;
+    --bg-color: rgb(51, 210, 205);
+    --color-primary: purple;
+    --color-secondary: rgb(252, 54, 239);
+}
+
+body {
+    background-color: var(--bg-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    font-family: var(--font-family);
+    text-align: center;
+}
+
+h1 {
+    font-size: 4rem;
+    font-weight: 700;
+
+}
+
+h3 {
+    font-size: 2rem;
+    margin: 1.5rem;
+}
+
+.mensagem {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.box {
+    color: var(--color-secondary);
+    box-sizing: border-box;
+    border: 2px solid var(--color-primary);
+    margin: 1rem;
+    display: inline-block;
+    font-size: 3rem;
+    padding: .85rem;
+}
+
+.fa-solid {
+    color: purple;
+}
+
+.icone {
+    font-size: 3rem;
+}
