@@ -9,9 +9,7 @@ elementoMaiorValor.textContent = maiorValor;
 
 const numeroSecreto = gerarNumeroAleatorio(maiorValor);
 
-
-
 function gerarNumeroAleatorio(maiorValor) {
-    return parseInt(Math.random() * (maiorValor + 1));
+    return parseInt(Math.random() * maiorValor + 1);
 }
 console.log('numeroSecreto', numeroSecreto);

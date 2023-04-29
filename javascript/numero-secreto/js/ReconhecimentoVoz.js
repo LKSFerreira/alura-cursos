@@ -15,20 +15,19 @@ recognition.addEventListener('result', onSpeak);
 
 function onSpeak(eventoDeFala) {
 
-    let transcricao = eventoDeFala.results[0][0].transcript;
     // remove os pontos da frase e substitui a palavra Menos ou menos por - e sem espaços
-    transcricao = transcricao.replace(/\./g, '').replace(/Menos /g, '-').replace(/menos /g, '-').replace(/ /g, '');
+    const transcricao = eventoDeFala.results[0][0].transcript
+        .replace(/\./g, '')
+        .replace(/Menos /g, '-')
+        .replace(/ /g, '')
+        .replace(/Sem/g, '100')
+        .replace(/Um/g, '1')
+        .replace(/Zero/g, '0');
 
-    const valorFalado = parseInt(transcricao);
-
-    console.log('valorFalado', valorFalado);
-
-    exibeFalaNaTela(valorFalado);
-
-    verificaSeOChutePossuiValorValido(transcricao);
-    // verificar(resultado);
+    const transcricaoValidada = verificaSeOChutePossuiValorValido(transcricao);
+    exibeFalaNaTela(transcricaoValidada);
 }
 
-function exibeFalaNaTela(transcricao) {
-    elementoChute.innerHTML = `<span class="box">${transcricao}</span>`;
-}
+recognition.addEventListener('end', () => recognition.start());
+
+
