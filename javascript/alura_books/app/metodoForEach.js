@@ -1,8 +1,9 @@
 const elementoParaInserirOsLivros = document.querySelector('#livros');
 
 function renderizarLivros(listaDeLivros) {
-    listaDeLivros.forEach(livro => {
-        elementoParaInserirOsLivros.innerHTML += `
+  elementoParaInserirOsLivros.innerHTML = "";
+  listaDeLivros.forEach(livro => {
+    elementoParaInserirOsLivros.innerHTML += `
     <div class="livro">
       <img class="livro__imagens" src="${livro.imagem}" alt="${livro.alt}"/>
       <h2 class="livro__titulo">
@@ -15,5 +16,5 @@ function renderizarLivros(listaDeLivros) {
       </div>
     </div>
     `
-    });
+  });
 }
