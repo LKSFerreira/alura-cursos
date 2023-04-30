@@ -1,11 +1,15 @@
 const elementoParaInserirOsLivros = document.querySelector('#livros');
+const elementoValorTotalLivrosDisponiveis = document.querySelector('#valor_total_livros_disponiveis');
 
-function renderizarLivros(listaDeLivros) {
+function renderizaLivros(listaDeLivros) {
+  elementoValorTotalLivrosDisponiveis.innerHTML = "";
   elementoParaInserirOsLivros.innerHTML = "";
+
   listaDeLivros.forEach(livro => {
+    const disponibilidade = livro.quantidade < 1 ? 'indisponivel' : 'disponivel';
     elementoParaInserirOsLivros.innerHTML += `
     <div class="livro">
-      <img class="livro__imagens" src="${livro.imagem}" alt="${livro.alt}"/>
+      <img class="livro__imagens ${disponibilidade}" src="${livro.imagem}" alt="${livro.alt}"/>
       <h2 class="livro__titulo">
         ${livro.titulo}
       </h2>
