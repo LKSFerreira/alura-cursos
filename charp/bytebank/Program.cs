@@ -1,5 +1,4 @@
-﻿using bytebank;
-using bytebank.Model.Contas;
+﻿using bytebank.Model.Contas;
 using bytebank.Model.Usuarios;
 
 ContaCorrente contaDoLucas = new ContaCorrente(863, "863146", new Cliente("Lucas Ferreira", "123.456.789-10", "Desenvolvedor"));
@@ -24,3 +23,7 @@ Console.WriteLine($"Saldo da conta da Vanderleia: {contaDaVanderleia.GetSaldo()}
 
 contaDoLucas.GetConta();
 contaDaVanderleia.GetConta();
+
+Console.WriteLine($"Total de contas corrente: {ContaCorrente.totalDeContasCorrente}");
+Console.WriteLine($"Total de clientes: {Cliente.totalDeCliente}");
+

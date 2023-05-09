@@ -2,7 +2,7 @@ namespace bytebank.Model.Usuarios
 {
     public class Cliente
     {
-        public int totalDeCliente { get; private set; }
+        public static int totalDeCliente { get; private set; }
         public string nome;
         public string cpf;
         public string profissao;

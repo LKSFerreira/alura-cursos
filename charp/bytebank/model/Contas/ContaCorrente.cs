@@ -4,7 +4,7 @@ namespace bytebank.Model.Contas
 {
     public class ContaCorrente
     {
-        public int totalDeContasCorrente { get; private set; }
+        public static int totalDeContasCorrente { get; private set; }
         private int numeroAgencia;
         private string conta;
         public Cliente titular;
@@ -14,7 +14,7 @@ namespace bytebank.Model.Contas
         {
             this.numeroAgencia = numeroAgencia;
             this.conta = conta;
-            this.titular = new Cliente(titular.nome, titular.cpf, titular.profissao);
+            this.titular = titular;
             this.saldo = 0;
             totalDeContasCorrente++;
         }
