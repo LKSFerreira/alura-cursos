@@ -17,4 +17,5 @@ gerenciador.RegistrarBonificacoes(vanderleia);
 
 Console.WriteLine($"Total de bonificações do mês: {gerenciador.TotalDeBonificacao.ToString("C")}");
 Console.WriteLine($"Total de prêmios semestrais: {gerenciador.TotalDePremioSemestral.ToString("C")}");
+Console.WriteLine($"Total de funcionários: {Funcionario.TotalDeFuncionarios}");
 

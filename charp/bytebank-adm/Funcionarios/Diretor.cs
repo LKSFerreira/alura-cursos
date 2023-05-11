@@ -2,8 +2,6 @@ namespace bytebank_adm.Funcionarios
 {
     public class Diretor : Funcionario
     {
-
-
         override public double GetBonificacao()
         {
             return Salario;
@@ -13,7 +11,5 @@ namespace bytebank_adm.Funcionarios
         {
             return base.PremioSemestral() + this.Salario; ;
         }
-
-
     }
 }
