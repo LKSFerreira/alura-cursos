@@ -1,19 +1,19 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace bytebank_adm.Funcionarios
 {
-    public class Diretor
+    public class Diretor : Funcionario
     {
-        public string Nome { get; set; }
-        public string Cpf { get; set; }
-        public double Salario { get; set; }
 
-        public double GetBonificacao()
+
+        override public double GetBonificacao()
         {
-            return Salario * 1;
+            return Salario;
         }
+
+        public override double PremioSemestral()
+        {
+            return base.PremioSemestral() + this.Salario; ;
+        }
+
+
     }
 }

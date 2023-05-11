@@ -12,8 +12,9 @@ vanderleia.Cpf = "456.456.789-11";
 vanderleia.Salario = 5000;
 
 GerenciadorDeBonificacao gerenciador = new GerenciadorDeBonificacao();
-gerenciador.Registrar(lucas);
-gerenciador.Registrar(vanderleia);
+gerenciador.RegistrarBonificacoes(lucas);
+gerenciador.RegistrarBonificacoes(vanderleia);
 
 Console.WriteLine($"Total de bonificações do mês: {gerenciador.TotalDeBonificacao.ToString("C")}");
+Console.WriteLine($"Total de prêmios semestrais: {gerenciador.TotalDePremioSemestral.ToString("C")}");
 
