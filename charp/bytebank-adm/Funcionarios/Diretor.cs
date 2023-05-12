@@ -1,5 +1,3 @@
-using bytebank_adm.SistemaInterno;
-
 namespace bytebank_adm.Funcionarios
 {
     public class Diretor : FuncionarioAutenticavel
