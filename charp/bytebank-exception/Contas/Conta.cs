@@ -26,6 +26,20 @@ public abstract class Conta
         return numeroConta;
     }
 
+    private void ValidarTaxaOperacao()
+    {
+        try
+        {
+            TaxaOperacao = 30 / TotalDeContasCriadas;
+        }
+        catch (DivideByZeroException)
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Error.WriteLine($"Não é possível dividir a taxa de operação por zero!");
+            Console.ResetColor();
+        }
+    }
+
     public double Saldo { get; protected set; }
 
     public Conta(int numeroAgencia, int numeroConta, Cliente titular)
@@ -33,23 +47,7 @@ public abstract class Conta
         this.Agencia = ValidarAgencia(numeroAgencia);
         this.NumeroConta = ValidarConta(numeroConta);
 
-        TaxaOperacao = 30 / TotalDeContasCriadas;
-        /* Comentado para testar o tratamento de exceções
-        if (numero_agencia <= 0)
-        {
-            throw new ArgumentException("Número de agência menor ou igual a zero!", nameof(numero_agencia));
-        }
-        
-        
-        try
-        {
-            TaxaOperacao = 30 / TotalDeContasCriadas;
-        }
-        catch (DivideByZeroException)
-        {
-            Console.WriteLine("Ocorreu um erro! Não é possível fazer uma divisão por zero!");
-        }          
-        */
+        ValidarTaxaOperacao();
 
         TotalDeContasCriadas++;
     }
@@ -90,6 +88,6 @@ public abstract class Conta
     public override string ToString()
     {
         // return $"\nNome: {Nome,-20}| CPF: {Cpf,-20}| Profissão: {Profissao,-20}| Data de Nascimento: {DataNascimento.ToShortDateString()}";
-        return $"Agência: {this.Agencia,-10}| Número da Conta: {this.NumeroConta,-10}| Saldo: {this.Saldo.ToString("C")}";
+        return $"Agência: {this.Agencia,-10}| Número da Conta: {this.NumeroConta,-8}| Saldo: {this.Saldo.ToString("C")}";
     }
 }
