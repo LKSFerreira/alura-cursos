@@ -1,6 +1,8 @@
-﻿using bytebank_exception.Funcionarios;
+﻿using bytebank_exception.Contas;
+using bytebank_exception.Funcionarios;
 using bytebank_exception.Parceiros;
 using bytebank_exception.SistemaInterno;
+using bytebank_exception.Usuarios;
 using bytebank_exception.Utilitario;
 
 #region
@@ -62,12 +64,20 @@ void EntraNoSistemaInterno()
 */
 #endregion
 
-try
-{
-    
-}
-catch (System.Exception)
-{
-    
-    throw;
-}
+Cliente clienteLucas = new Cliente("Lucas Ferreira", "123.456.789-10", "Desenvolvedor", new DateTime(1991, 04, 27));
+Console.WriteLine($"Titular: {clienteLucas}");
+
+Conta contaLucas = new ContaCorrente(123, 123456, clienteLucas);
+Console.WriteLine($"Conta: {contaLucas}");
+
+
+
+// try
+// {
+
+// }
+// catch (System.Exception)
+// {
+
+//     throw;
+// }

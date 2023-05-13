@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/bytebank-adm.csproj",
+                "${workspaceFolder}/bytebank-excepetion.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/bytebank-adm.csproj",
+                "${workspaceFolder}/bytebank-excepetion.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/bytebank-adm.csproj"
+                "${workspaceFolder}/bytebank-excepetion.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

@@ -1,72 +1,46 @@
 using bytebank_exception.Usuarios;
 namespace bytebank_exception.Contas;
-public class Conta
+public abstract class Conta
 {
     public static int TotalDeContasCriadas { get; private set; }
     public static float TaxaOperacao { get; private set; }
     public Cliente Titular { get; set; }
-    public int NumeroConta
-    {
-        get { return NumeroConta; }
+    public int Agencia { get; private set; }
+    public int NumeroConta { get; private set; }
 
-        private set
-        {
-            if (value > 0)
-            {
-                NumeroConta = value;
-            }
-        }
-    }
-    public int Agencia
+    private int ValidarAgencia(int numeroAgencia)
     {
-        get { return Agencia; }
-        private set
+        if (numeroAgencia <= 0)
         {
-            if (value > 0)
-            {
-                Agencia = value;
-            }
+            throw new ArgumentException("Número de agência menor ou igual a zero!", nameof(numeroAgencia));
         }
+        return numeroAgencia;
     }
-    public double Saldo { get; private set; }
-    public bool Depositar(double valor)
-    {
-        if (valor <= 0)
-        {
-            return false;
-        }
-        this.Saldo += valor;
-        return true;
-    }
-    public bool Sacar(double valor)
-    {
-        if (valor <= this.Saldo && valor > 0)
-        {
-            return false;
-        }
 
-        this.Saldo -= valor;
-        return true;
-    }
-    public bool Transferir(double valor, Conta destino)
+    private int ValidarConta(int numeroConta)
     {
-        if (Sacar(valor) && destino.Depositar(valor))
+        if (numeroConta <= 0)
         {
-            return true;
+            throw new ArgumentException("Número de conta menor ou igual a zero!", nameof(numeroConta));
         }
-        return false;
+        return numeroConta;
     }
-    public Conta(int numero_agencia, int numero_conta)
-    {
-        this.Agencia = numero_agencia;
-        this.NumeroConta = numero_conta;
 
+    public double Saldo { get; protected set; }
+
+    public Conta(int numeroAgencia, int numeroConta, Cliente titular)
+    {
+        this.Agencia = ValidarAgencia(numeroAgencia);
+        this.NumeroConta = ValidarConta(numeroConta);
+
+        TaxaOperacao = 30 / TotalDeContasCriadas;
+        /* Comentado para testar o tratamento de exceções
         if (numero_agencia <= 0)
         {
             throw new ArgumentException("Número de agência menor ou igual a zero!", nameof(numero_agencia));
         }
-
-        /*
+        
+        
         try
         {
             TaxaOperacao = 30 / TotalDeContasCriadas;
@@ -76,7 +50,46 @@ public class Conta
             Console.WriteLine("Ocorreu um erro! Não é possível fazer uma divisão por zero!");
         }          
         */
+
         TotalDeContasCriadas++;
     }
 
+    public bool Depositar(double valor)
+    {
+        if (!ValidarDeposito(valor))
+        {
+            return false;
+        }
+        this.Saldo += valor;
+        return true;
+    }
+
+    protected bool ValidarDeposito(double valor)
+    {
+        return (valor <= 0) ? false : true;
+    }
+
+    protected abstract bool Sacar(double valor);
+
+    protected bool ValidarSaque(double valor)
+    {
+        return (valor > this.Saldo && valor <= 0) ? false : true;
+    }
+
+    public bool Transferir(double valor, Conta destino)
+    {
+        if (Sacar(valor) && destino.Depositar(valor))
+        {
+            return true;
+        }
+        return false;
+    }
+
+
+
+    public override string ToString()
+    {
+        // return $"\nNome: {Nome,-20}| CPF: {Cpf,-20}| Profissão: {Profissao,-20}| Data de Nascimento: {DataNascimento.ToShortDateString()}";
+        return $"Agência: {this.Agencia,-10}| Número da Conta: {this.NumeroConta,-10}| Saldo: {this.Saldo.ToString("C")}";
+    }
 }
