@@ -1,3 +1,4 @@
+using bytebank_exception.Exceptions;
 using bytebank_exception.Usuarios;
 namespace bytebank_exception.Contas;
 public abstract class Conta
@@ -7,7 +8,19 @@ public abstract class Conta
     public Cliente Titular { get; set; }
     public int Agencia { get; private set; }
     public int NumeroConta { get; private set; }
+    public double Saldo { get; protected set; }
 
+    public Conta(int numeroAgencia, int numeroConta, Cliente titular)
+    {
+        this.Agencia = ValidarAgencia(numeroAgencia);
+        this.NumeroConta = ValidarConta(numeroConta);
+        this.Saldo = 100;
+
+        TotalDeContasCriadas++;
+
+        ValidarTaxaOperacao();
+
+    }
     private int ValidarAgencia(int numeroAgencia)
     {
         if (numeroAgencia <= 0)
@@ -25,7 +38,6 @@ public abstract class Conta
         }
         return numeroConta;
     }
-
     private void ValidarTaxaOperacao()
     {
         try
@@ -40,21 +52,10 @@ public abstract class Conta
         }
     }
 
-    public double Saldo { get; protected set; }
-
-    public Conta(int numeroAgencia, int numeroConta, Cliente titular)
-    {
-        this.Agencia = ValidarAgencia(numeroAgencia);
-        this.NumeroConta = ValidarConta(numeroConta);
-
-        ValidarTaxaOperacao();
-
-        TotalDeContasCriadas++;
-    }
 
     public bool Depositar(double valor)
     {
-        if (!ValidarDeposito(valor))
+        if (!PodeDeposito(valor))
         {
             return false;
         }
@@ -62,16 +63,22 @@ public abstract class Conta
         return true;
     }
 
-    protected bool ValidarDeposito(double valor)
+    protected bool PodeDeposito(double valor)
     {
         return (valor <= 0) ? false : true;
     }
 
-    protected abstract bool Sacar(double valor);
+    public abstract bool Sacar(double valor);
 
-    protected bool ValidarSaque(double valor)
+    protected bool PodeSacar(double valor)
     {
-        return (valor > this.Saldo && valor <= 0) ? false : true;
+        //return (this.Saldo < valor || valor < 0) ? throw new SaldoInsuficienteException("Operação Negada. Saldo insuficiente!") : true;
+        return valor switch
+        {
+            _ when this.Saldo < valor => throw new SaldoInsuficienteException("Operação Negada. Saldo insuficiente!"),
+            _ when valor <= 0 => throw new ValorInvalidoException("Operação Negada. Valor Inválido!"),
+            _ => true
+        };
     }
 
     public bool Transferir(double valor, Conta destino)
@@ -82,8 +89,6 @@ public abstract class Conta
         }
         return false;
     }
-
-
 
     public override string ToString()
     {

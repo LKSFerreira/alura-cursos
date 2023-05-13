@@ -5,9 +5,9 @@ public class ContaCorrente : Conta
 {
     public ContaCorrente(int agencia, int numeroConta, Cliente titular) : base(agencia, numeroConta, titular) { }
 
-    protected override bool Sacar(double valor)
+    public override bool Sacar(double valor)
     {
-        if (!ValidarDeposito(valor))
+        if (!PodeSacar(valor))
         {
             return false;
         }

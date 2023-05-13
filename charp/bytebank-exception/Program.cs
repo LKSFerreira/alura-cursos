@@ -72,8 +72,14 @@ try
     Conta contaLucas = new ContaCorrente(7, 123456, clienteLucas);
     Console.WriteLine($"Conta: {contaLucas}");
 
+    contaLucas.Sacar(50);
+    Console.WriteLine($"Saldo: {contaLucas.Saldo.ToString("C")}");
+
+    contaLucas.Sacar(-150);
+    Console.WriteLine($"Saldo: {contaLucas.Saldo.ToString("C")}");
+
 }
-catch (ArgumentException ex)
+catch (Exception ex)
 {
     Console.ForegroundColor = ConsoleColor.Red;
     Console.WriteLine($"{ex.Message}");
