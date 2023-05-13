@@ -5,6 +5,9 @@ public abstract class Conta
 {
     public static int TotalDeContasCriadas { get; private set; }
     public static float TaxaOperacao { get; private set; }
+    public static int QuantidadeSaquesBloqueados { get; private set; }
+    public static int QuantidadeTransferenciasBloqueadas { get; private set; }
+
     public Cliente Titular { get; set; }
     public int Agencia { get; private set; }
     public int NumeroConta { get; private set; }
@@ -72,22 +75,41 @@ public abstract class Conta
 
     protected bool PodeSacar(double valor)
     {
-        //return (this.Saldo < valor || valor < 0) ? throw new SaldoInsuficienteException("Operação Negada. Saldo insuficiente!") : true;
-        return valor switch
+        switch (valor)
         {
-            _ when this.Saldo < valor => throw new SaldoInsuficienteException("Operação Negada. Saldo insuficiente!"),
-            _ when valor <= 0 => throw new ValorInvalidoException("Operação Negada. Valor Inválido!"),
-            _ => true
-        };
+            case var saldoInsuficiente when this.Saldo < valor:
+                QuantidadeSaquesBloqueados++;
+                throw new SaldoInsuficienteException("Saldo insuficiente para saque!", new Exception("Valor do saldo: " + this.Saldo.ToString("C")));
+            case var valorInvalido when valor <= 0:
+                QuantidadeSaquesBloqueados++;
+                throw new ValorInvalidoException(valor, "saque");
+            default:
+                return true;
+        }
     }
 
     public bool Transferir(double valor, Conta destino)
     {
-        if (Sacar(valor) && destino.Depositar(valor))
+        PodeTransferir(valor, destino);
+
+        Sacar(valor);
+        destino.Depositar(valor);
+        return true;
+    }
+
+    private bool PodeTransferir(double valor, Conta destino)
+    {
+        switch (valor)
         {
-            return true;
+            case var saldoInsuficiente when this.Saldo < valor:
+                QuantidadeTransferenciasBloqueadas++;
+                throw new SaldoInsuficienteException("Saldo insuficiente para transferência!", new Exception("Valor do saldo: " + this.Saldo.ToString("C")));
+            case var valorInvalido when valor <= 0:
+                QuantidadeTransferenciasBloqueadas++;
+                throw new ValorInvalidoException(valor, "transferência");
+            default:
+                return true;
         }
-        return false;
     }
 
     public override string ToString()
