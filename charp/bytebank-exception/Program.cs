@@ -108,24 +108,17 @@ finally
 */
 #endregion
 
-LeitorDeArquivo leitor = new LeitorDeArquivo("contas.txt");
-try
+using (LeitorDeArquivo leitor = new LeitorDeArquivo("contas.txt"))
 {
-    Console.WriteLine($"Arquivo: {leitor.Arquivo}");
-    leitor.LerProximaLinha();
-    leitor.LerProximaLinha();
-    leitor.LerProximaLinha();
+    try
+    {
+        Console.WriteLine($"Arquivo: {leitor.Arquivo}");
+        leitor.LerProximaLinha();
+        leitor.LerProximaLinha();
+        leitor.LerProximaLinha();
+    }
+    catch (System.Exception)
+    {
+        Console.WriteLine($"Erro ao ler arquivo: {leitor.Arquivo}");
+    }
 }
-catch (IOException)
-{
-    Console.WriteLine($"Leitura de arquivo interrompida.");
-}
-catch (Exception ex)
-{
-    Console.WriteLine($"Erro genérico: {ex.Message}");
-}
-finally
-{
-    leitor.Fechar();
-}
-
